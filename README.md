@@ -22,14 +22,14 @@ Sommaire :
  - [Installation du système de base](#Installation-du-système-de-base)
  - [Configuration hostname et langue](#Configuration-hostname-et-langue)
  - [Configuration du boot](#Configuration-du-boot)
- - [Configuration après redémarrage](#Configuration-après-redémmarage)
+ - [Configuration après redémarrage](#configuration-après-redémarrage)
  - [Chiffrement de la partition home](#Chiffrement-de-la-partition-home)
  - [Création de son compte utilisateur](#Création-de-son-compte-utilisateur)
- - [Installation de l'environnement graphique (i3)](#Installation-de-l'environement-graphique-(i3))
- - [Installation du gestionnaire de paquet (yay)](#Installation-du-gestionnaire-de-paquet-(yay))
- - [Installation des dépôts blackarch](#Installation-des-dépots-blackarch-(like-kali-linux))
- - [Installation et personnalisation de (zsh)](#Installation-et-personnalisation-de-(zsh))
- - [Personnalisation de l'éditeur de texte (vim)](#Personnalisation-de-l'éditeur-de-texte-(vim))
+ - [Installation de l'environnement graphique (i3)](#Installation-de-l'environement-graphique-i3)
+ - [Installation du gestionnaire de paquet (yay)](#Installation-du-gestionnaire-de-paquet-yay)
+ - [Installation des dépôts blackarch](#Installation-des-dépots-blackarch-like-kali-linux)
+ - [Installation et personnalisation de (zsh)](#Installation-et-personnalisation-de-zsh)
+ - [Personnalisation de l'éditeur de texte (vim)](#Personnalisation-de-l'éditeur-de-texte-vim)
 
 ## Préparation de la clé bootable
 
