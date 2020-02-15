@@ -25,11 +25,11 @@ Sommaire :
  - [Configuration après redémarrage](#Configuration-après-redémarrage)
  - [Chiffrement de la partition home](#Chiffrement-de-la-partition-home)
  - [Création de son compte utilisateur](#Création-de-son-compte-utilisateur)
- - [Installation de l'environnement graphique (i3)](#Installation-de-l'environement-graphique-i3)
+ - [Installation de l'environnement graphique (i3)](#Installation-de-lenvironement-graphique-i3)
  - [Installation du gestionnaire de paquet (yay)](#Installation-du-gestionnaire-de-paquet-yay)
  - [Installation des dépôts blackarch](#Installation-des-dépots-blackarch-like-kali-linux)
  - [Installation et personnalisation de (zsh)](#Installation-et-personnalisation-de-zsh)
- - [Personnalisation de l'éditeur de texte (vim)](#Personnalisation-de-l'éditeur-de-texte-vim)
+ - [Personnalisation de l'éditeur de texte (vim)](#Personnalisation-de-léditeur-de-texte-vim)
 
 ## Préparation de la clé bootable
 
