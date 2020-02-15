@@ -1,6 +1,7 @@
-# Installation Arch Linux 
-## Introduction 
+# How To Install My ArchLinux?
+## Introduction
 
+Dans cette procédure, je vous détaille step by step comment installer votre Arch Linux.
 Certaines étapes difères, pour la connexion Wifi par exemple sur une VM nous sommes naté automatiquement au réseau du poste.
 Si nous installons ArchLinux sur un laptop il faudrat utiliser le paquet "wifi-menu".
 
@@ -20,7 +21,7 @@ Une fois votre clé bootable prête, il suffit de booter sur celle-ci et choisir
 
 
 ## Installation
-### Prépartions
+### Prépartion
 
 Il faut passer le système sur une version française avec un clavier azerty une fois que vous avez un shell qui apparaît.
 
