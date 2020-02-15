@@ -9,7 +9,7 @@
 | Ouvrir un terminal	                 					   | <kbd>Mod</kbd> + <kbd>Return</kbd>                      |
 | Lanceur d'application	                   					   | <kbd>Mod</kbd> + <kbd>d</kbd> 	                         |
 | Mettre une application en plein écran	  					   | <kbd>Mod</kbd> + <kbd>f</kbd> 	                         |
-| Mettre une application dans une grande partie de l'écran	   | <kbd>Mod</kbd> + <kbd>Shift<kbd> + <kbd>Space</kbd> 	                         |
+| Mettre une application dans une grande partie de l'écran	   | <kbd>Mod</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd>    |
 | Quitter l'application										   | <kbd>Mod</kbd> + <kbd>q</kbd> 	                         |
 
 ## Les raccourcis de deepin-terminal
