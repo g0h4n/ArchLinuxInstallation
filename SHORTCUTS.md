@@ -2,11 +2,15 @@
 ## Les raccourcis d'i3
 
 
-| Fonction					      			| Raccourcis                            |
-|-------------------------------------------|---------------------------------------------------------|
-| Changer de bureau               			| <kbd>mod</kbd> + <kbd><0 à 9></kbd>       			  |
-| Déplacer une appli sur un autre bureau	| <kbd>mod</kbd> + <kbd>Shift</kbd> + <kbd><0 à 9</kbd>   |
-| Ouvrir un terminal	                    | <kbd>mod</kbd> + <kbd>Return</kbd>                      |
+| Fonction					      							   | Raccourcis                            |
+|--------------------------------------------------------------|---------------------------------------------------------|
+| Changer de bureau					   		         		   | <kbd>Mod</kbd> + <kbd><0 à 9></kbd>       			     |
+| Déplacer une appli sur un autre bureau					   | <kbd>Mod</kbd> + <kbd>Shift</kbd> + <kbd><0 à 9></kbd>  |
+| Ouvrir un terminal	                 					   | <kbd>Mod</kbd> + <kbd>Return</kbd>                      |
+| Lanceur d'application	                   					   | <kbd>Mod</kbd> + <kbd>d</kbd> 	                         |
+| Mettre une application en plein écran	  					   | <kbd>Mod</kbd> + <kbd>f</kbd> 	                         |
+| Mettre une application dans une grande partie de l'écran	   | <kbd>Mod</kbd> + <kbd>Shift<kbd> + <kbd>Space</kbd> 	                         |
+| Quitter l'application										   | <kbd>Mod</kbd> + <kbd>q</kbd> 	                         |
 
 ## Les raccourcis de deepin-terminal
 
