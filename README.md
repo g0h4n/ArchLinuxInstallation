@@ -13,7 +13,14 @@ Si vous souhaitez installer Arch Linux sur une VM avec VMWARE, veuillez éditer 
 firmware = "efi"
 ```
 
-## Préparation clé bootable
+## Sommaire
+
+ - [Préparation de la clé bootable](#Préparation-de-la-clé-bootable)
+ - [Installation](#Installation)
+ - [Préparation](##Préparation)
+ - [Partitionnement](##Partitionnement)
+
+## Préparation de la clé bootable
 
 Afin d'installer le système ArchLinux, il faut télécharger l'ISO de celui-ci depuis le site officiel d'ArchLinux.
 http://mir.archlinux.fr/iso/latest/
