@@ -36,6 +36,11 @@ Sommaire :
 Afin d'installer le système ArchLinux, il faut télécharger l'ISO de celui-ci depuis le site officiel d'ArchLinux.
 http://mir.archlinux.fr/iso/latest/
 
+```bash
+#Exemple pour préparer votre clé bootable avec la commande dd
+dd if=image.iso of=/dev/sdb bs=4M
+```
+
 Une fois votre clé bootable prête, il suffit de booter sur celle-ci et choisir, installer ArchLinux 64bits.
 
 
