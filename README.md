@@ -13,12 +13,15 @@ Si vous souhaitez installer Arch Linux sur une VM avec VMWARE, veuillez éditer 
 firmware = "efi"
 ```
 
-## Sommaire
+Sommaire :
 
  - [Préparation de la clé bootable](#Préparation-de-la-clé-bootable)
  - [Installation](#Installation)
  - [Préparation](##Préparation)
  - [Partitionnement](##Partitionnement)
+ - [Installation du système de base](#Installation-du-système-de-base)
+ - [Configuration hostname et langue](#Configuration-hostname-et-langue)
+ - [Configuration du boot](#Configuration-du-boot)
 
 ## Préparation de la clé bootable
 
@@ -29,7 +32,7 @@ Une fois votre clé bootable prête, il suffit de booter sur celle-ci et choisir
 
 
 ## Installation
-### Prépartion
+### Préparation
 
 Il faut passer le système sur une version française avec un clavier azerty une fois que vous avez un shell qui apparaît.
 
@@ -146,7 +149,7 @@ pacstrap /mnt base git zsh firefox curl base-devel intel-ucode dialog wpa_suppli
 ```
 
 
-### Configuration hostname et languages
+### Configuration hostname et langue
 
 La commande ci-dessous permet de passer sur notre ArchLinux :
 
