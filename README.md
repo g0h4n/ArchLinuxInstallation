@@ -2,8 +2,9 @@
 ## Introduction
 
 Dans cette procédure, je vous détaille step by step comment installer votre Arch Linux.
+
 Certaines étapes diffères, pour la connexion Wifi par exemple sur une VM nous sommes naté automatiquement au réseau du poste.
-Si nous installons ArchLinux sur un laptop il faudra utiliser le paquet "wifi-menu".
+Si nous installons ArchLinux sur un laptop il faudra utiliser le paquet "wifi-menu" ou encore "NetworkManager" avec la commande "nmtui".
 
 Si vous souhaitez installer Arch Linux sur une VM avec VMWARE, veuillez éditer le fichier .vmx afin d'ajouter la ligne suivante à la fin de celui-ci :
 
