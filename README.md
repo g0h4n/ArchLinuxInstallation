@@ -22,6 +22,14 @@ Sommaire :
  - [Installation du système de base](#Installation-du-système-de-base)
  - [Configuration hostname et langue](#Configuration-hostname-et-langue)
  - [Configuration du boot](#Configuration-du-boot)
+ - [Configuration après redémarrage](#Configuration-après-redémmarage)
+ - [Chiffrement de la partition home](#Chiffrement-de-la-partition-home)
+ - [Création de son compte utilisateur](#Création-de-son-compte-utilisateur)
+ - [Installation de l'environnement graphique (i3)](#Installation-de-l'environement-graphique-(i3))
+ - [Installation du gestionnaire de paquet (yay)](#Installation-du-gestionnaire-de-paquet-(yay))
+ - [Installation des dépôts blackarch](#Installation-des-dépots-blackarch-(like-kali-linux))
+ - [Installation et personnalisation de (zsh)](#Installation-et-personnalisation-de-(zsh))
+ - [Personnalisation de l'éditeur de texte (vim)](#Personnalisation-de-l'éditeur-de-texte-(vim))
 
 ## Préparation de la clé bootable
 
@@ -232,8 +240,7 @@ bootctl --path=/boot update
 Redémarrer votre poste ou votre VM.
 
 
-## Configuration
-### Après redémarrage
+### Configuration après redémarrage
 
 
 Vérifier la connexion internet.
@@ -253,7 +260,7 @@ passwd
 ```
 
 
-### Chiffrement du /home
+### Chiffrement de la partition home
 
 Nous allons chiffrer la partion /home/ avec le paquet cryptsetup.
 Mais avant cela nous devons la umount pour la libèrer.
@@ -325,7 +332,7 @@ Recherchez dans le fichier /mnt/etc/fstab la ligne de montage /home, et remplace
 
 
 
-### Compte personnel
+### Création de son compte utilisateur
 
 
 Création d'un compte utilisateur :
@@ -342,13 +349,13 @@ $ reboot
 ```
 
 
-### Environement graphique (i3)
+### Installation de l'environement graphique (i3)
 
 
 Installer les paquets suivants :
 
 ```bash
-$ pacman -S i3 dmenu xorg xorg-xinit lightdm
+$ pacman -S i3 dmenu xorg xorg-xinit
 ```
 
 
@@ -362,7 +369,7 @@ $ vim ~/.xinitrc to this:
 ```
 
 
-Logez-vous appuyer sur 'ENTRER' et choisir la touche de command.
+Logez-vous appuyer sur 'ENTRER' et choisir la touche de 'command'.
 Quitter et redémarrer afin d'avoir un shell.
 
 
@@ -371,6 +378,8 @@ Editer le fichier de config d'i3 :
 ```bash
 $ vim ~/.config/i3/config
 ```
+
+Je vais ajouter ma conf i3 dans le dossier 'config/i3/' de ce git.
 
 
 
@@ -381,12 +390,15 @@ $ yay polybar
 ```
 
 
-Personnaliser la bar de status.
+Personnaliser votre polybar :
 
 
 ```bash
-$ vim ~/.i3status
+$ vim ~/.config/polybar/config
 ```
+
+Pareil de pour i3, je vais ajouter ma config polybar dans le dossier 'config/polybar' de ce git.
+
 
 
 Installation d'un terminal avec i3 :
@@ -408,7 +420,7 @@ $ vim /etc/profile
 ```
 
 
-## Personnalisation de son Arch
+### Installation du gestionnaire de paquet (yay)
 
 Maintenant, je vais installer un autre gestionnaire de paquet 'yay' :
 
@@ -422,11 +434,20 @@ $ yay
 ```
 
 
+Editer yay pacman et ajouter les deux lignes suivantes : 
+
+```bash
+$ vim /ect/pacman.conf
+    Color 
+    ILoveCandy
+```
+
+
 Voila, maintenant pour installer un paquet il faut utiliser la commande 'yay <nomdupaquet>' et pour mettre à jour ceux déjà installer juste un 'yay' suffit.
 Pour supprimer un paquet déjà installer 'yay -R <nomdupaquet>'.
 
 
-## Installation des dépots blackarch (like kali linux)
+### Installation des dépots blackarch (like kali linux)
 
 Récupèrer le script d'installation sur blackarch.org : 
 
@@ -466,7 +487,20 @@ $ chsh -s /bin/zsh
 ```
 
 
-## Personnaliser son shell
+### Installation et personnalisation de (zsh)
+
+Si ce n'est pas déjà fait, installer /bin/zsh :
+
+```bash
+pacman -S zsh
+```
+
+Le définir comme shell par défaut pour l'utilisateur actuel : 
+
+```bash
+chsh -s /bin/zsh
+```
+
 
 Pimp son shell zsh avec le paquet 'ohmyzsh'.
 (Cela s'applique à l'utilisateur qui execute la commande)
@@ -503,7 +537,7 @@ $ ln -sf /dev/null ~/.zsh_history
 ```
 
 
-## Personnaliser l'éditeur 'vim'
+### Personnalisation de l'éditeur de texte (vim)
 
 Editer le ~/.vimrc et coller ceci : 
 
@@ -534,15 +568,6 @@ let g:airline#extensions#tagbar#enabled=1
 let g:airline#extensions#tmuxline#enabled=1
 let g:airline#extensions#languageclient#enabled=1
 ``` 
-
-
-Editer yay pacman et ajouter les deux lignes suivantes : 
-
-```bash
-$ vim /ect/pacman.conf
-    Color 
-    ILoveCandy
-```
 
 
 Notre Arch Linux est prêt pour l'utilisation.
