@@ -367,7 +367,7 @@ $ pacman -S i3 dmenu xorg xorg-xinit
 Ajouter la ligne suivante afin de démarrer i3 au démarrage session.
 
 ```bash
-$ vim ~/.xinitrc to this:
+$ vim ~/.xinitrc
 
 	#! /bin/bash
 	exec i3
