@@ -2,10 +2,16 @@
 ## Les raccourcis d'i3
 
 
+| Fonction					      			| Raccourcis                            |
+|-------------------------------------------|---------------------------------------------------------|
+| Changer de bureau               			| <kbd>mod</kbd> + <kbd><0 à 9></kbd>       			  |
+| Déplacer une appli sur un autre bureau	| <kbd>mod</kbd> + <kbd>Shift</kbd> + <kbd><0 à 9</kbd>   |
+| Ouvrir un terminal	                    | <kbd>mod</kbd> + <kbd>Return</kbd>                      |
+
 ## Les raccourcis de deepin-terminal
 
 
-| Function					      | Shortcut                            |
+| Fontion					      | Raccourcis                            |
 |---------------------------------|---------------------------------------------------------|
 | Copy                            | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>c</kbd>       |
 | Paste                           | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>v</kbd>       |
