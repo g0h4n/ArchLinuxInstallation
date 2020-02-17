@@ -82,7 +82,7 @@ Pour le partitionnement vérifier le nom de votre disque avec la commande suivan
 fdisk -l
 ```
 
-Ici mon disque c'est /dev/sda
+Ici mon disque c'est /dev/nvme0n1
 
 
 Création des partions :
