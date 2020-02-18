@@ -245,7 +245,7 @@ vgextend VGname /dev/nouveaudisque
 ```bash
 lvcreate -L 30G -n root VGname
 lvcreate -L 16G -n swap VGname
-lvcleate -l 100%FREE -n home VGname #utiliser l'espace restant
+lvcreate -l 100%FREE -n home VGname #utiliser l'espace restant
 ```
 
 ###### Formatage des partitions LVM
@@ -282,7 +282,7 @@ vim /etc/pacman.d/mirrorlist
 Installation des paquets de base :
 
 ```bash
-pacstrap /mnt base base-devel lvm2 linux git zsh firefox curl intel-ucode dialog wpa_supplicant vim
+pacstrap /mnt base base-devel lvm2 linux linux-firmware networkmanager dhcpcd git zsh firefox curl intel-ucode dialog wpa_supplicant vim
 ```
 
 
@@ -359,6 +359,7 @@ vim /boot/loader/loader.conf
     editor 0
     default ID
 ```
+**Le Default ID sera normalement déjà présent et renseigné**
 
 #### Dans le cas d'un root non chiffré
 
@@ -407,8 +408,15 @@ Enfin mettre à jour notre /boot :
 bootctl --path=/boot update
 ```
 
-Redémarrer votre poste ou votre VM.
+Quitter l'environement chroot:
+```bash
+$ exit
+```
 
+Redémarrer votre poste ou votre VM :
+```bash
+$ reboot
+```
 
 ### Configuration après redémarrage
 
@@ -522,12 +530,52 @@ $ reboot
 ### Installation de l'environement graphique (i3)
 
 
-Installer les paquets suivants :
+Installer i3 et Xorg:
 
 ```bash
-$ pacman -S i3 dmenu xorg xorg-xinit
+$ pacman -S i3 dmenu xorg xorg-xinit xorg-server xorg-apps 
 ```
 
+Installer un gestionnaire d'affichage :
+
+**On utilise ici Lightdm, il est tout à fait possible d'utiliser d'autres gestionnaires comme GDM, LXDM, XDM ou d'autres**
+
+```bash
+$ pacman -S lightdm lightdm-gtk-greeter lightdm-webkit-theme-aether
+```
+**lightdm-webkit-theme-aether est optionnel c'est un thème pour lightdm**
+
+Ajouter des fonts supplémentaires (Optionnel) :
+
+```bash
+$ pacman -S noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-freefont ttf-liberation ttf-droid ttf-inconsolata ttf-roboto terminus-font ttf-font-awesome
+```
+
+Installer la gestion du son :
+```bash
+$ pacman -S alsa-utils alsa-plugins alsa-lib pulseaudio-alsa pavucontrol
+```
+
+Ajout d'utilitaires supplémentaires (Optionnel) :
+```bash
+$ pacman xfce4-terminal xfce4-power-manager ranger conky polybar flameshot evince network-manager-applet bluez bluez-utils bluez-libs pulseaudio-bluetooth
+```
+LightDM utilise PAM même si `autologin` est activé, il faut donc que l'utilisateur fasse aussi partie du groupe `autologin`
+
+Vérification de l'existance du groupe `autologin` :
+```bash
+$ cat /etc/groups | grep autologin
+```
+
+Si le groupe n'existe pas il faut le créer :
+```bash
+$ groupadd -r autologin
+```
+
+Ajout de l'utilisateur dans le groupe `autologin`:
+```bash
+$ gpasswd -a <nom_d'utilisateur> autologin
+```
 
 Ajouter la ligne suivante afin de démarrer i3 au démarrage session.
 
@@ -538,6 +586,15 @@ $ vim ~/.xinitrc
 	exec i3
 ```
 
+Démarage automatique de l'environement i3 à l'ouverture de la session :
+```bash
+$ vim /etc/profile
+
+	# autostart systemd default session on tty1
+	if [[ "$(tty)" == '/dev/tty1' ]]; then
+	    exec startx
+	fi
+```
 
 Logez-vous appuyer sur 'ENTRER' et choisir la touche de 'command'.
 Quitter et redémarrer afin d'avoir un shell.
@@ -550,14 +607,6 @@ $ vim ~/.config/i3/config
 ```
 
 Je vais ajouter ma conf i3 dans le dossier 'config/i3/' de ce git.
-
-
-
-Installer poplybar :
-
-```bash
-$ yay polybar
-```
 
 
 Personnaliser votre polybar :
@@ -576,19 +625,6 @@ Installation d'un terminal avec i3 :
 ```bash
 $ pacman -S deepin-terminal
 ```
-
-
-Nous voulons qu'i3 se lance tout seul (startx) :
-
-```bash
-$ vim /etc/profile
-
-	# autostart systemd default session on tty1
-	if [[ "$(tty)" == '/dev/tty1' ]]; then
-	    exec startx
-	fi
-```
-
 
 ### Installation du gestionnaire de paquet (yay)
 
