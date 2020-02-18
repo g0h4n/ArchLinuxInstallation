@@ -740,3 +740,7 @@ let g:airline#extensions#languageclient#enabled=1
 
 
 Notre Arch Linux est prêt pour l'utilisation.
+
+```informations
+Je tiens à remercier Dakyne et Sneagle pour leur participation à la rédaction !
+```
