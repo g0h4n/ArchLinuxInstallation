@@ -19,11 +19,12 @@ Sommaire :
  - [Installation](#Installation)
  - [Préparation](#Préparation)
  - [Partitionnement](#Partitionnement)
+ - [Dans le cas d'un système entièrement chiffré](#dans-le-cas-dun-système-entièrement-chiffré)
  - [Installation du système de base](#Installation-du-système-de-base)
  - [Configuration hostname et langue](#Configuration-hostname-et-langue)
  - [Configuration du boot](#Configuration-du-boot)
  - [Configuration après redémarrage](#Configuration-après-redémarrage)
- - [Chiffrement de la partition home](#Chiffrement-de-la-partition-home)
+ - [Chiffrement de la partition home si le système n'est pas entièrement chiffré](#Chiffrement-de-la-partition-home-si-le-système-nest-pas-entièrement-chiffré)
  - [Création de son compte utilisateur](#Création-de-son-compte-utilisateur)
  - [Installation de l'environnement graphique (i3)](#Installation-de-lenvironement-graphique-i3)
  - [Installation du gestionnaire de paquet (yay)](#Installation-du-gestionnaire-de-paquet-yay)
@@ -429,7 +430,7 @@ passwd
 ```
 
 
-### Chiffrement de la partition home (si le root n'est pas chiffré)
+### Chiffrement de la partition home si le système n'est pas entièrement chiffré
 
 Nous allons chiffrer la partion /home/ avec le paquet cryptsetup.
 Mais avant cela nous devons la umount pour la libèrer.
