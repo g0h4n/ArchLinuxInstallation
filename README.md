@@ -282,7 +282,7 @@ vim /etc/pacman.d/mirrorlist
 Installation des paquets de base :
 
 ```bash
-pacstrap /mnt base base-devel lvm2 linux linux-firmware networkmanager dhcpcd git zsh firefox curl intel-ucode dialog wpa_supplicant vim
+pacstrap /mnt base base-devel lvm2 linux linux-firmware dhclient git zsh firefox curl intel-ucode dialog wpa_supplicant vim
 ```
 
 
@@ -422,6 +422,15 @@ $ reboot
 
 
 Vérifier la connexion internet.
+
+```bash
+$ systemctl enable NetworkManager
+$ systemctl start NetworkManager
+```
+Gestionnaire semi-graphique des connexions :
+```bash
+$ nmtui
+```
 
 Mettre à jour son sytème.
 
@@ -778,6 +787,6 @@ let g:airline#extensions#languageclient#enabled=1
 
 Notre Arch Linux est prêt pour l'utilisation.
 
-```informations
-Je tiens à remercier Dakyne et Sneagle pour leur participation à la rédaction !
-```
+**informations
+Je tiens à remercier [Dakyne](https://github.com/Dakyne) et [Sneagle](https://github.com/Dakyne) pour leur participation à la rédaction !
+**
