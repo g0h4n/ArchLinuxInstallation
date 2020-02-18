@@ -543,17 +543,18 @@ $ reboot
 Installer i3 et Xorg:
 
 ```bash
-$ pacman -S i3 dmenu xorg xorg-xinit xorg-server xorg-apps 
+$ pacman -S i3 dmenu xorg xorg-xinit xorg-server xorg-apps xfce4-terminal
 ```
+***Il est possible de remplacer xfc4-terminal par le terminal de votre choix, une liste des terminaux gérer par i3 est disponible [ici](https://build.i3wm.org/docs/i3-sensible-terminal.html)***
 
 Installer un gestionnaire d'affichage :
 
-**On utilise ici Lightdm, il est tout à fait possible d'utiliser d'autres gestionnaires comme GDM, LXDM, XDM ou d'autres**
+***On utilise ici Lightdm, il est tout à fait possible d'utiliser d'autres gestionnaires comme GDM, LXDM, XDM ou d'autres***
 
 ```bash
-$ pacman -S lightdm lightdm-gtk-greeter lightdm-webkit-theme-aether
+$ pacman -S lightdm lightdm-gtk-greeter lightdm-webkit-theme-aether 
 ```
-**lightdm-webkit-theme-aether est optionnel c'est un thème pour lightdm**
+***lightdm-webkit-theme-aether est optionnel c'est un thème pour lightdm***
 
 Ajouter des fonts supplémentaires (Optionnel) :
 
@@ -568,7 +569,7 @@ $ pacman -S alsa-utils alsa-plugins alsa-lib pulseaudio-alsa pavucontrol
 
 Ajout d'utilitaires supplémentaires (Optionnel) :
 ```bash
-$ pacman xfce4-terminal xfce4-power-manager ranger conky polybar flameshot evince network-manager-applet bluez bluez-utils bluez-libs pulseaudio-bluetooth
+$ pacman xfce4-power-manager ranger conky polybar flameshot evince network-manager-applet bluez bluez-utils bluez-libs pulseaudio-bluetooth
 ```
 LightDM utilise PAM même si `autologin` est activé, il faut donc que l'utilisateur fasse aussi partie du groupe `autologin`
 
@@ -606,9 +607,11 @@ $ vim /etc/profile
 	fi
 ```
 
-Logez-vous appuyer sur 'ENTRER' et choisir la touche de 'command'.
-Quitter et redémarrer afin d'avoir un shell.
+Redemarrez
 
+Après le login, i3 ne va détecter aucune configuration et vous proposera d'en créer une ("Appuyez sur Entrer") et de choisir une touche de "command" (choix possible entre la touche Windows et Alt)
+
+### Personalisation de l'interface
 
 Editer le fichier de config d'i3 :
 
@@ -788,6 +791,6 @@ let g:airline#extensions#languageclient#enabled=1
 
 Notre Arch Linux est prêt pour l'utilisation.
 
-**informations**
+***informations***
 Je tiens à remercier [Dakyne](https://github.com/Dakyne) et [Sneagle](https://github.com/Dakyne) pour leur participation à la rédaction !
 
