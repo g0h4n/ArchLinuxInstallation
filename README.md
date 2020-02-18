@@ -532,6 +532,7 @@ $ visudo
 
     g0h4n ALL=(ALL) ALL
 
+$ passwd g0h4n
 $ reboot
 ```
 
