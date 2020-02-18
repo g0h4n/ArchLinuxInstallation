@@ -1,10 +1,10 @@
 # How To Install My ArchLinux?
 ## Introduction
 
-Dans cette procédure, je vous détaille step by step comment installer votre Arch Linux.
+Dans cette procédure, je vous détaille step by step comment installer une Arch Linux.
 
-Certaines étapes diffères, pour la connexion Wifi par exemple sur une VM nous sommes naté automatiquement au réseau du poste.
-Si nous installons ArchLinux sur un laptop il faudra utiliser le paquet "wifi-menu" ou encore "NetworkManager" avec la commande "nmtui".
+Certaines étapes diffèrent. Pour la connexion Wifi par exemple, sur une VM nous sommes NATés automatiquement au réseau du poste.
+Si nous installons ArchLinux sur un laptop il faudra utiliser le paquet "wifi-menu" ou encore "NetworkManager" avec la commande "nmtui" après l'installation.
 
 Si vous souhaitez installer Arch Linux sur une VM avec VMWARE, veuillez éditer le fichier .vmx afin d'ajouter la ligne suivante à la fin de celui-ci :
 
@@ -15,7 +15,7 @@ firmware = "efi"
 
 Sommaire :
 
- - [Préparation de la clé bootable](#Préparation-de-la-clé-bootable)
+ - [Préparation de la clef bootable](#Préparation-de-la-clé-bootable)
  - [Installation](#Installation)
  - [Préparation](#Préparation)
  - [Partitionnement](#Partitionnement)
@@ -33,17 +33,16 @@ Sommaire :
  - [Les raccourcis clavier](https://github.com/g0h4n/ArchLinuxInstallation/blob/master/SHORTCUTS.md)
 
 
-## Préparation de la clé bootable
+## Préparation de la clef bootable
 
-Afin d'installer le système ArchLinux, il faut télécharger l'ISO de celui-ci depuis le site officiel d'ArchLinux.
-http://mir.archlinux.fr/iso/latest/
+Afin d'installer le système ArchLinux, il faut télécharger l'ISO de celui-ci depuis le [site officiel d'ArchLinux](http://mir.archlinux.fr/iso/latest/).
 
-```bash
-#Exemple pour préparer votre clé bootable avec la commande dd
-dd if=image.iso of=/dev/sdb bs=4M
+```text
+#Exemple pour préparer votre clef bootable avec la commande dd
+dd if=image.iso of=/dev/sdX bs=4M
 ```
 
-Une fois votre clé bootable prête, il suffit de booter sur celle-ci et choisir, installer ArchLinux 64bits.
+Une fois votre clef prête, il suffit de booter sur celle-ci et choisir, installer ArchLinux 64bits.
 
 
 ## Installation
@@ -62,18 +61,20 @@ ping google.fr
 ```
 
 Si la requête ICMP passe nous pouvons passer à l'étape suivante, sinon vérifier votre connexion réseau.
-Pour le paramétrage wifi utiliser le paquet 'wifi-menu'.
+Pour le paramétrage wifi utiliser le paquet `wifi-menu`.
 
 
 ### Partitionnement
 
+#### Dans le cas d'un système pas (entièrement) chiffré
+
 Nous allons partitionner notre système de façon à avoir les partion suivantes :
 
 ```tree
-\boot\  1Go
-\swap\  4Go
-\       30Go
-\home\  15Go
+/boot    1Go
+swap    16Go
+/       30Go
+/home  150Go # le reste
 ```
 
 Pour le partitionnement vérifier le nom de votre disque avec la commande suivante :
@@ -92,8 +93,8 @@ gdisk /dev/nvme0n1
     d    	#delete all partitions
     n    	# Add a new partition
     1    	# partition number (/boot)
-    2048 	# On commence à 2048
-    +1000M 	# Et je finis 100Mo plus loin
+    [enter]
+    +1G 	# Et je finis 1Go plus loin
 
     t
     ef00    # EFI system
@@ -104,7 +105,7 @@ gdisk /dev/nvme0n1
     n       # Nouvelle partition
     2       # Partition numéro 2 (swap)
     [enter] # par défaut on accepte le secteur proposé
-    +16G     # Je crée une partition de 4Go pour le swap
+    +16G    # Je crée une partition de 16Go pour le swap
     t       # Nous allons changer le type de patition.
     2       # On choisit la patition 2
     8200      # On définit la partition comme swap
@@ -125,27 +126,147 @@ gdisk /dev/nvme0n1
 ```
 
 
-Formatage des partitions  :
+##### Formatage des partitions
 
 
 ```bash
-mkfs.fat -F32 /dev/sda1
-mkswap /dev/sda2
-mkfs.ext4 /dev/sda3
-mkfs.ext4 /dev/sda4
+mkfs.fat -F32 /dev/nvme0n1p1
+mkswap /dev/nvme0n1p2
+mkfs.ext4 /dev/nvme0n1p3
+mkfs.ext4 /dev/nvme0n1p4
 ```
 
-Monter la partition /dev/sda3 
+##### Montage des partitions
 
 ```bash
-mount /dev/sda3 /mnt/
+mount /dev/nvme0n1p3 /mnt
 mkdir /mnt/boot
-mount /dev/sda1 /mnt/boot
-swapon /dev/sda2
+mount /dev/nvme0n1p1 /mnt/boot
+swapon /dev/nvme0n1p2
 ```
 
+#### Dans le cas d'un système entièrement chiffré
+
+##### Partitions physiques
+Nous allons partitionner notre système de façon à avoir les partion suivantes :
+
+```tree
+/boot    1Go
+swap    16Go
+/       30Go
+/home  150Go # le reste
+```
+
+Pour le partitionnement vérifier le nom de votre disque avec la commande suivante :
+
+```bash
+fdisk -l
+```
+
+Ici mon disque c'est /dev/nvme0n1
+
+
+Création des partions :
+
+```bash
+gdisk /dev/nvme0n1
+    o       # Create new GUID (gpt) table
+    d    	# delete all partitions
+    n    	# Add a new partition
+    1    	# partition number (/boot)
+    [enter] # Par défaut
+    +1G 	# Et je finis 1Go plus loin
+
+    t
+    ef00    # EFI system
+
+
+    # On créée la suivante pour le LUKS/LVM
+
+    n       # Nouvelle partition
+    2       # Partition numéro 2
+    [enter] # par défaut on accepte le secteur proposé
+    [enter] # pareil pour le secteur de fin
+    t       # Type
+    8309    # LUKS
+    w       # Écrire et quitter
+```
+
+##### Conteneur LUKS
+
+###### Création du conteneur :
+
+```bash
+cryptsetup -v luksFormat /dev/nvme0n1p2
+YES
+```
+
+###### Ouverture du conteneur :
+
+```bash
+cryptsetup open /dev/nvme0n1p2 luks
+```
+
+###### Partitionnement LVM
+
+```ascii
+┌─────────┬────────┬────────┐
+│   PV    │        │   LV   │ PV = Disque/partition physique (Physical Volume)
+├─────────┤        ├────────┤
+│   PV    │   VG   │   LV   │ VG = Disque détecté par le système (Volume Group)
+├─────────┤        ├────────┤
+│   PV    │        │   LV   │ LV = Partitions virtuelles (Logical Volume)
+└─────────┴────────┴────────┘
+```
+
+###### Création du PV :
+
+```bash
+pvcreate /dev/nvme0n1p2
+```
+
+###### Création du VG
+
+```bash
+vgcreate VGname /dev/nvme0n1p2
+```
+
+Dans le cas d'un seul VG et plusieurs disques physiques, on peut étendre ce VG sur plusieurs disques physiques. Le système les considèrera comme un seul disque
+
+
+```bash
+pvcreate /dev/nouveaudisque
+vgextend VGname /dev/nouveaudisque
+```
+
+###### Création des LV, ou partitions root, home et swap
+
+```bash
+lvcreate -L 30G -n root VGname
+lvcreate -L 16G -n swap VGname
+lvcleate -l 100%FREE -n home VGname #utiliser l'espace restant
+```
+
+###### Formatage des partitions LVM
+
+```bash
+mkfs.ext4 /dev/mapper/VGname-root
+mkfs.ext4 /dev/mapper/VGname-home
+mkswap /dev/mapper/VGname-swap
+```
+
+##### Montage des partitions
+
+```bash
+mount /dev/mapper/VGname-root /mnt
+mkdir /mnt/{boot,home}
+mount -t vfat /dev/nvme0n1p1 /mnt/boot
+mount /dev/mapper/VGname-home /mnt/home
+swapon /dev/mapper/VGname-swap
+```
 
 ### Installation du système de base
+
 
 Sélection du miroir :
 
@@ -160,25 +281,31 @@ vim /etc/pacman.d/mirrorlist
 Installation des paquets de base :
 
 ```bash
-pacstrap /mnt base git zsh firefox curl base-devel intel-ucode dialog wpa_supplicant vim 
+pacstrap /mnt base base-devel lvm2 linux git zsh firefox curl intel-ucode dialog wpa_supplicant vim
 ```
 
 
 ### Configuration hostname et langue
 
-La commande ci-dessous permet de passer sur notre ArchLinux :
+#### Générer le fstab du nouveau système via celui monté dans notre iso :
+
+```bash
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+#### La commande ci-dessous permet de passer sur notre ArchLinux :
 
 ```bash
 arch-chroot /mnt
 ```
 
-Configuration du hostname de la machine :
+#### Configuration du hostname de la machine :
 
 ```bash
 echo 'G0H4N-VM-ARCHLINUX' > /etc/hostname
 ```
 
-Configuration de la langue et des fuseaux horaires :
+#### Configuration de la langue et des fuseaux horaires :
 
 ```bash
 #Décommenter les deux lignes ci-dessous :
@@ -198,30 +325,46 @@ echo KEYMAP=fr > /etc/vconsole.conf
 ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 ```
 
+### Configuration du système
+
+#### Dans le cas d'un root chiffré
+
+Éditer /etc/mkinitcpio.conf et ajouter encrypt lvm2 filesystems et keyboard à l'emplacement suivant :
+```bash
+HOOKS=(base udev autodetect modconf block keymap encrypt lvm2 filesystems keyboard fsck)
+```
+
+#### Dans tous les cas
+
+Lancer :
+
+```bash
+mkinitcpio -P
+```
 
 ### Configuration du boot
 
 Afin que notre système puisse démarrer correctement nous allons préparer notre /boot :
 
 ```bash
-pacman -S linux
 bootctl --path=/boot install
 ```
 
 ```bash
 vim /boot/loader/loader.conf
 
-    default search
-    timeout 3
-    editor no
+    default arch
+    timeout 0
+    editor 0
     default ID
 ```
 
+#### Dans le cas d'un root non chiffré
 
-Rrécupérer le PARTUUID de la partion racine / avec la commande suivante :
+Récupérer le PARTUUID de la partion racine / avec la commande suivante :
 
 ```bash
-blkid /dev/sda3
+blkid /dev/nvme0n1p3
 ```
 
 
@@ -237,6 +380,25 @@ vim /boot/loader/entries/arch.conf
     options root=PARTUUID="66cda2d8-4aca-49ad-b1ff-ac17dd70cb01" rw quiet
 ```
 
+#### Dans le cas d'un root chiffré
+
+```bash
+blkid | grep nvme0n1p2 | cut -d '"' -f2 >> /mnt/boot/loader/entries/arch.conf
+```
+
+Éditer le fichier arch.conf et replacer la ligne ajoutée dans le champs uuid
+
+```bash
+vim /boot/loader/entries/arch.conf
+
+    title   Arch Linux
+    linux   /vmlinuz-linux
+    initrd  /intel-ucode.img
+    initrd  /initramfs-linux.img
+    options cryptdevice=UUID=4ad93963-fb52-4313-8846-636099383954:lvm:allow-discards root=/dev/mapper/VGname-root rw quiet
+```
+
+#### Dans tous les cas
 
 Enfin mettre à jour notre /boot :
 
@@ -267,7 +429,7 @@ passwd
 ```
 
 
-### Chiffrement de la partition home
+### Chiffrement de la partition home (si le root n'est pas chiffré)
 
 Nous allons chiffrer la partion /home/ avec le paquet cryptsetup.
 Mais avant cela nous devons la umount pour la libèrer.
@@ -277,7 +439,7 @@ umount /home
 ```
 
 ```bash
-cryptsetup -y -v luksFormat /dev/sda4
+cryptsetup -y -v luksFormat /dev/nvme0n1p4
 
     Are you sure? : YES
 ```
@@ -294,7 +456,7 @@ dd écrit des 0 sur la partition, cela peut prendre du temps suivant la taille d
 
 ```bash
 #Ouverture de la partition chiffré.
-cryptsetup luksOpen /dev/sda4 home
+cryptsetup luksOpen /dev/nvme0n1p4 home
 
 #la commande dd est longue et non obligatoire.
 dd if=/dev/zero of=/dev/mapper/home
@@ -305,7 +467,7 @@ mkfs.ext4 /dev/mapper/home
 
 
 Votre partition est désormais prête à l’emploi. 
-Si vous voulez chiffrer votre clé USB/disque externe avec LUKS, vous pouvez utiliser la même procédure.
+Si vous voulez chiffrer votre clef USB/disque externe avec LUKS, vous pouvez utiliser la même procédure.
 
 
 Pour utiliser la nouvelle partition chiffrée avec /home, vous devrez faire quelques chanegements à la fois sur fstab et sur crypttab pour la monter correctement.
@@ -315,7 +477,7 @@ Si vous ne voulez pas de temps d’attente, supprimez cette option.
 
 
 ```bash
-home /dev/sda4 none luks,timeout=120
+home /dev/nvme0n1p4 none luks,timeout=120
 ```
 
 
@@ -323,7 +485,7 @@ Veuillez noter que tous les changements faits sur la partition (par exemple avec
 
 
 ```bash
-cryptsetup luksOpen /dev/sda4 home
+cryptsetup open /dev/nvme0n1p4 home
 e2label /dev/mapper/home <name>
 ```
 
