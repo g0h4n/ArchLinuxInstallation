@@ -569,13 +569,13 @@ $ pacman -S alsa-utils alsa-plugins alsa-lib pulseaudio-alsa pavucontrol
 
 Ajout d'utilitaires supplémentaires (Optionnel) :
 ```bash
-$ pacman xfce4-power-manager ranger conky polybar flameshot evince network-manager-applet bluez bluez-utils bluez-libs pulseaudio-bluetooth
+$ pacman -S xfce4-power-manager ranger conky polybar flameshot evince network-manager-applet bluez bluez-utils bluez-libs pulseaudio-bluetooth
 ```
 LightDM utilise PAM même si `autologin` est activé, il faut donc que l'utilisateur fasse aussi partie du groupe `autologin`
 
 Vérification de l'existance du groupe `autologin` :
 ```bash
-$ cat /etc/groups | grep autologin
+$ cat /etc/group | grep autologin
 ```
 
 Si le groupe n'existe pas il faut le créer :
@@ -691,33 +691,19 @@ $ yay
 ```
 
 
-Installer le nouveau shell 
-
-```bash
-$ yay zsh neofetch
-```
-
-
-Changer la variable environement du shell : 
-
-```bash
-$ export SHELL=/bin/zsh
-$ chsh -s /bin/zsh
-```
-
-
 ### Installation et personnalisation de (zsh)
 
 Si ce n'est pas déjà fait, installer /bin/zsh :
 
 ```bash
-pacman -S zsh
+pacman -S zsh neofetch
 ```
 
 Le définir comme shell par défaut pour l'utilisateur actuel : 
 
 ```bash
-chsh -s /bin/zsh
+$ export SHELL=/bin/zsh
+$ chsh -s /bin/zsh
 ```
 
 
