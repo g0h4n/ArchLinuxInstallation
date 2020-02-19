@@ -223,13 +223,13 @@ cryptsetup open /dev/nvme0n1p2 luks
 ###### Création du PV :
 
 ```bash
-pvcreate /dev/nvme0n1p2
+pvcreate /dev/mapper/luks
 ```
 
 ###### Création du VG
 
 ```bash
-vgcreate VGname /dev/nvme0n1p2
+vgcreate VGname /dev/luks
 ```
 
 Dans le cas d'un seul VG et plusieurs disques physiques, on peut étendre ce VG sur plusieurs disques physiques. Le système les considèrera comme un seul disque
@@ -282,7 +282,7 @@ vim /etc/pacman.d/mirrorlist
 Installation des paquets de base :
 
 ```bash
-pacstrap /mnt base base-devel lvm2 linux linux-firmware dhclient git zsh firefox curl intel-ucode dialog wpa_supplicant vim
+pacstrap /mnt base base-devel lvm2 linux linux-firmware dhclient git zsh firefox curl intel-ucode dialog wpa_supplicant networkmanager vim
 ```
 
 
@@ -569,7 +569,7 @@ $ pacman -S alsa-utils alsa-plugins alsa-lib pulseaudio-alsa pavucontrol
 
 Ajout d'utilitaires supplémentaires (Optionnel) :
 ```bash
-$ pacman -S xfce4-power-manager ranger conky polybar flameshot evince network-manager-applet bluez bluez-utils bluez-libs pulseaudio-bluetooth
+$ pacman -S xfce4-power-manager ranger conky flameshot evince network-manager-applet bluez bluez-utils bluez-libs pulseaudio-bluetooth
 ```
 LightDM utilise PAM même si `autologin` est activé, il faut donc que l'utilisateur fasse aussi partie du groupe `autologin`
 
