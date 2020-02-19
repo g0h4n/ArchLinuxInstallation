@@ -696,7 +696,7 @@ $ yay
 Si ce n'est pas déjà fait, installer /bin/zsh :
 
 ```bash
-pacman -S zsh neofetch
+$ pacman -S zsh neofetch
 ```
 
 Le définir comme shell par défaut pour l'utilisateur actuel : 
