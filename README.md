@@ -229,7 +229,7 @@ pvcreate /dev/mapper/luks
 ###### Création du VG
 
 ```bash
-vgcreate VGname /dev/luks
+vgcreate VGname /dev/mapper/luks
 ```
 
 Dans le cas d'un seul VG et plusieurs disques physiques, on peut étendre ce VG sur plusieurs disques physiques. Le système les considèrera comme un seul disque
