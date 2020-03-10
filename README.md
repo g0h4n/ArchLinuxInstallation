@@ -31,6 +31,7 @@ Sommaire :
  - [Installation des dépôts blackarch](#Installation-des-dépots-blackarch-like-kali-linux)
  - [Installation et personnalisation de (zsh)](#Installation-et-personnalisation-de-zsh)
  - [Personnalisation de l'éditeur de texte (vim)](#Personnalisation-de-léditeur-de-texte-vim)
+ - [Ajouter un Dark thème](#Ajouter-un-Dark-thème)
  - [Les raccourcis clavier](https://github.com/g0h4n/ArchLinuxInstallation/blob/master/SHORTCUTS.md)
 
 
