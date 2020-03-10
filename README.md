@@ -772,8 +772,26 @@ let g:airline#extensions#syntastic#enabled=1
 let g:airline#extensions#tagbar#enabled=1
 let g:airline#extensions#tmuxline#enabled=1
 let g:airline#extensions#languageclient#enabled=1
-``` 
+```
 
+
+### Ajouter un Dark thème
+
+Installer les paquets suivants :
+
+```bash
+yay LXAppearance
+yay gruvbox
+yay paper icon
+```
+
+Maintenant on peut modifier le thème avec la commande suivante :
+
+```bash
+# En utilisateur standard et en root
+lxappearance
+sudo lxappearance
+```
 
 Notre Arch Linux est prêt pour l'utilisation.
 
