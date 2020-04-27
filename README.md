@@ -657,7 +657,7 @@ $ yay
 Editer yay pacman et ajouter les deux lignes suivantes : 
 
 ```bash
-$ vim /ect/pacman.conf
+$ vim /etc/pacman.conf
     Color 
     ILoveCandy
 ```
@@ -797,5 +797,5 @@ sudo lxappearance
 Notre Arch Linux est prêt pour l'utilisation.
 
 ***informations***
-Je tiens à remercier [Dakyne](https://github.com/Dakyne) et [Sneagle](https://github.com/Dakyne) pour leur participation à la rédaction !
+Je tiens à remercier [Dakyne](https://github.com/Dakyne) et [Sneagle](https://github.com/Sneagle) pour leur participation à la rédaction !
 
