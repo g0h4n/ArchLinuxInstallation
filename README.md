@@ -665,6 +665,8 @@ $ vim /etc/pacman.conf
 
 Voila, maintenant pour installer un paquet il faut utiliser la commande 'yay <nomdupaquet>' et pour mettre à jour ceux déjà installer juste un 'yay' suffit.
 Pour supprimer un paquet déjà installer 'yay -R <nomdupaquet>'.
+Pour supprimer avec les dépendances 'yay -Rdd <nomdupaquet>'.
+POur vider le cache de yay 'yay -Sc'.
 
 
 ### Installation des dépots blackarch (like kali linux)
