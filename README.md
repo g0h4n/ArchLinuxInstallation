@@ -409,6 +409,12 @@ Enfin mettre à jour notre /boot :
 bootctl --path=/boot update
 ```
 
+Set un password à root :
+
+```bash
+passwd
+```
+
 Quitter l'environement chroot:
 ```bash
 $ exit
@@ -526,7 +532,7 @@ Recherchez dans le fichier /mnt/etc/fstab la ligne de montage /home, et remplace
 Création d'un compte utilisateur :
 
 ```bash
-$ useradd -mg users -s /bin/zsh g0h4n
+$ useradd -ms /bin/zsh g0h4n
 $ pacman -S sudo
 $ export EDITOR=vim
 $ visudo
@@ -783,9 +789,9 @@ let g:airline#extensions#languageclient#enabled=1
 Installer les paquets suivants :
 
 ```bash
-yay LXAppearance
-yay gruvbox
-yay paper icon
+yay lxappearance
+yay gtk-theme-arc-gruvbox-git
+yay paper-icon-theme-git
 ```
 
 Maintenant on peut modifier le thème avec la commande suivante :
