@@ -255,6 +255,7 @@ lvcreate -l 100%FREE -n home VGname #utiliser l'espace restant
 mkfs.ext4 /dev/mapper/VGname-root
 mkfs.ext4 /dev/mapper/VGname-home
 mkswap /dev/mapper/VGname-swap
+mkfs.fat -F32 /dev/nvme0n1p1
 ```
 
 ##### Montage des partitions
