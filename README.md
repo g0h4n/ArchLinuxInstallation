@@ -363,6 +363,7 @@ vim /boot/loader/loader.conf
 ```
 **Le Default ID sera normalement déjà présent et renseigné**
 
+
 #### Dans le cas d'un root non chiffré
 
 Récupérer le PARTUUID de la partion racine / avec la commande suivante :
@@ -387,7 +388,7 @@ vim /boot/loader/entries/arch.conf
 #### Dans le cas d'un root chiffré
 
 ```bash
-blkid | grep nvme0n1p2 | cut -d '"' -f2 >> /mnt/boot/loader/entries/arch.conf
+blkid | grep nvme0n1p2 | cut -d '"' -f2 >> /boot/loader/entries/arch.conf
 ```
 
 Éditer le fichier arch.conf et replacer la ligne ajoutée dans le champs uuid
