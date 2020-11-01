@@ -449,13 +449,6 @@ pacman -Syu
 ```
 
 
-Mettre un mot de passe root à son ArchLinux :
-
-```bash
-passwd
-```
-
-
 ### Chiffrement de la partition home si le système n'est pas entièrement chiffré
 
 Nous allons chiffrer la partion /home/ avec le paquet cryptsetup.
