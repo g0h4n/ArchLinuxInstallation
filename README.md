@@ -155,7 +155,7 @@ Nous allons partitionner notre système de façon à avoir les partion suivantes
 ```tree
 /boot    1Go
 swap    16Go
-/       30Go
+/       80Go
 /home  150Go # le reste
 ```
 
@@ -243,8 +243,10 @@ vgextend VGname /dev/nouveaudisque
 
 ###### Création des LV, ou partitions root, home et swap
 
+Attention a bien partitionner votre root, ne pas hésiter à mettre 80Go/100Go pour ne pas être à court de stockage.
+
 ```bash
-lvcreate -L 30G -n root VGname
+lvcreate -L 80G -n root VGname
 lvcreate -L 16G -n swap VGname
 lvcreate -l 100%FREE -n home VGname #utiliser l'espace restant
 ```
